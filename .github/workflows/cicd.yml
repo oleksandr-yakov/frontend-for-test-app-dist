@@ -61,6 +61,7 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$VERSION
         #docker push $REGISTRY/$REPOSITORY:$VERSION-$TAG_ARM64
 
+
 #      - name: Create manifest       #combine arm and amd images like a "router"
 #        env:
 #          REGISTRY: ${{ steps.login-ecr-n-virginia.outputs.registry }}
