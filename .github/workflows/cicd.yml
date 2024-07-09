@@ -17,7 +17,7 @@ env:
   ROLE_TO_ASSUME: arn:aws:iam::905418051827:role/app-frontend-github-push-role
 
 jobs:
-  integration&delivery:
+  integration_delivery:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
