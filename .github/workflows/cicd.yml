@@ -39,13 +39,17 @@ jobs:
           role-to-assume: ${{ env.ROLE_TO_ASSUME }}
           aws-region: ${{ env.AWS_REGION_FRANKFURT }}
 
-      - name: Sts GetCallerIdentity
-        run: |
-          aws sts get-caller-identity
+#      - name: Sts GetCallerIdentity
+#        run: |
+#          aws sts get-caller-identity
+
+      - name: Login to Amazon ECR for  Frankfurt (push images)
+        id: login-ecr-frank-push-images
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build docker image  # create docker images with diff arh: amd / arm and save as images using --load
         env:
-          REGISTRY: ${{ steps.login-ecr-n-virginia.outputs.registry }}
+          REGISTRY: ${{ steps. login-ecr-frank-push-images.outputs.registry }}
         run: |
           docker buildx build --platform linux/amd64 -t $REGISTRY/$REPOSITORY:$VERSION-$TAG_AMD64 . --load
         #docker buildx build --platform linux/arm64 -t $REGISTRY/$REPOSITORY:$VERSION-$TAG_ARM64 . --load
