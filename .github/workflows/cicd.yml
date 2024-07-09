@@ -49,14 +49,14 @@ jobs:
 
       - name: Build docker image  # create docker images with diff arh: amd / arm and save as images using --load
         env:
-          REGISTRY: ${{ steps. login-ecr-frank-push-images.outputs.registry }}
+          REGISTRY: ${{ steps.login-ecr-frank-push-images.outputs.registry }}
         run: |
           docker buildx build --platform linux/amd64 -t $REGISTRY/$REPOSITORY:$VERSION-$TAG_AMD64 . --load
         #docker buildx build --platform linux/arm64 -t $REGISTRY/$REPOSITORY:$VERSION-$TAG_ARM64 . --load
 
       - name: Push docker image  to Amazon ECR  # push as simple images
         env:
-          REGISTRY: ${{ steps.login-ecr-n-virginia.outputs.registry }}
+          REGISTRY: ${{ steps.login-ecr-frank-push-images.outputs.registry }}
         run: |
           docker push $REGISTRY/$REPOSITORY:$VERSION-$TAG_AMD64
         #docker push $REGISTRY/$REPOSITORY:$VERSION-$TAG_ARM64
