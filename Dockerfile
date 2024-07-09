@@ -12,7 +12,6 @@ WORKDIR /app
 
 RUN npm install -g serve
 
-
 COPY --from=build /app/build /app/build
 EXPOSE 3000
 

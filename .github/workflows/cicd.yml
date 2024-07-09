@@ -43,18 +43,6 @@ jobs:
         run: |
           aws sts get-caller-identity
 
-      - name: Use Node.js 19
-        uses: actions/setup-node@v4
-        with:
-          node-version: 19
-
-      - name: Install dependencies
-        run: |
-          npm install --legacy-peer-deps
-
-      - name: Run build
-        run: npm run build
-
       - name: Build docker image  # create docker images with diff arh: amd / arm and save as images using --load
         env:
           REGISTRY: ${{ steps.login-ecr-n-virginia.outputs.registry }}
