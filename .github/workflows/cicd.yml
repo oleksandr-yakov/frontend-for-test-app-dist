@@ -11,7 +11,7 @@ on:
 env:
   AWS_REGION_FRANKFURT: eu-central-1
   REPOSITORY: frontend-for-test-app-dist
-  VERSION: latest
+  VERSION: latest_port
   TAG_ARM64: arm64
   TAG_AMD64: amd64
   ROLE_TO_ASSUME: arn:aws:iam::905418051827:role/app-frontend-github-push-role
